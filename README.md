@@ -14,3 +14,6 @@ BeautifulSoup4
 4. Enter the URLs for the user's achievements page and the global achievements page when prompted.
 5. Wait for the program to finish.
 6. The program will export a list of the user's missing achievements to a text file on the user's desktop.
+
+## Contributions
+Contributions are welcome! Feel free to open a Pull Request or report an issue.
