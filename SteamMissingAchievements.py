@@ -3,15 +3,15 @@ import os
 import sys
 from bs4 import BeautifulSoup
 
-AchievementsUnhided = input('Informe a URL das suas conquistas: ')
-AllAchievements = input('Informe a URL das conquistas globais: ')
+AchievementsUnhided = input('Enter the URL of your achievements: ')
+AllAchievements = input('Enter the URL of the global achievements: ')
 
 AchUn = []
 AchA = []
 
-print("Aguarde...")
+print("Please wait...")
 
-# Extrair as informações das conquistas do usuário
+# Extracting user's achievements information
 response = requests.get(AchievementsUnhided)
 soup = BeautifulSoup(response.text, 'html.parser')
 
@@ -19,7 +19,7 @@ for div in soup.find_all('div', {'class': 'achieveTxtHolder'}):
     Achievement = div.find('h3').text
     AchUn.append(Achievement)
 
-# Extrair as informações de todas as conquistas
+# Extracting all achievements information
 response = requests.get(AllAchievements)
 soup = BeautifulSoup(response.text, 'html.parser')
 
@@ -27,18 +27,18 @@ for div in soup.find_all('div', {'class': 'achieveTxtHolder'}):
     Achievement2 = div.find('h3').text
     AchA.append(Achievement2)
 
-# Encontrar as conquistas restantes
+# Finding missing achievements
 AchievementsMissing = []
 for conquista in AchA:
     if conquista not in AchUn:
         AchievementsMissing.append(conquista)
 
-print("Conquistas restantes:\n", AchievementsMissing)
+print("Remaining achievements:\n", AchievementsMissing)
 
-# Salvar as conquistas restantes em um arquivo de texto na área de trabalho do usuário
+# Saving missing achievements to a text file on user's desktop
 with open(f"{os.environ['UserProfile']}\Desktop\SteamAchievements.txt", 'w') as arquivo:
     arquivo.write("\n".join(AchievementsMissing))
-print("\nLista exportada para área de trabalho!")
+print("\nList exported to desktop!")
 
-input('Pressione enter para finalizar.. ')
+input('Press enter to exit... ')
 sys.exit()
