@@ -4,7 +4,9 @@ This Python program extracts information from two web pages on Steam, compares t
 
 ## Requirements
 Python 3.x
+
 Requests
+
 BeautifulSoup4
 
 ## Usage
